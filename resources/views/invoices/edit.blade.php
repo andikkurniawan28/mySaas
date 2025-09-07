@@ -19,8 +19,7 @@
                             <option value="">-- Pilih Tenant --</option>
                             @foreach ($users as $id => $name)
                                 <option value="{{ $id }}"
-                                    {{ (old('user_id', $invoice->user_id) == $id) ? 'selected' : '' }}>
-                                    {{ $name }}
+                                    {{ (old('user_id') ?? $invoice->user_id) == $id ? 'selected' : '' }}>{{ $name }}
                                 </option>
                             @endforeach
                         </select>
@@ -33,9 +32,8 @@
                             <option value="">-- Pilih Produk --</option>
                             @foreach ($products as $id => $name)
                                 <option value="{{ $id }}"
-                                    {{ (old('product_id', $invoice->product_id) == $id) ? 'selected' : '' }}>
-                                    {{ $name }}
-                                </option>
+                                    {{ (old('product_id') ?? $invoice->product_id) == $id ? 'selected' : '' }}>
+                                    {{ $name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -43,23 +41,25 @@
                     {{-- Amount --}}
                     <div class="mb-3">
                         <label for="amount" class="form-label">Jumlah (Rp)</label>
-                        <input type="number" step="0.01" name="amount" id="amount" class="form-control"
-                               value="{{ old('amount', $invoice->amount) }}" required>
+                        <input type="text" name="amount" id="amount" class="form-control currency-input"
+                            value="{{ old('amount') ?? number_format($invoice->amount, 0, ',', '.') }}" required>
                     </div>
 
                     {{-- Due Date --}}
                     <div class="mb-3">
                         <label for="due_date" class="form-label">Jatuh Tempo</label>
                         <input type="date" name="due_date" id="due_date" class="form-control"
-                               value="{{ old('due_date', $invoice->due_date) }}" required>
+                            value="{{ old('due_date') ?? $invoice->due_date }}" required>
                     </div>
 
                     {{-- Status Pembayaran --}}
                     <div class="mb-3">
                         <label for="is_paid" class="form-label">Status Pembayaran</label>
                         <select name="is_paid" id="is_paid" class="form-select">
-                            <option value="0" {{ old('is_paid', $invoice->is_paid) == 0 ? 'selected' : '' }}>Belum Dibayar</option>
-                            <option value="1" {{ old('is_paid', $invoice->is_paid) == 1 ? 'selected' : '' }}>Sudah Dibayar</option>
+                            <option value="0" {{ (old('is_paid') ?? $invoice->is_paid) == 0 ? 'selected' : '' }}>Belum
+                                Dibayar</option>
+                            <option value="1" {{ (old('is_paid') ?? $invoice->is_paid) == 1 ? 'selected' : '' }}>Sudah
+                                Dibayar</option>
                         </select>
                     </div>
 
@@ -67,10 +67,10 @@
                     <div class="mb-3">
                         <label for="paid_at" class="form-label">Tanggal Bayar</label>
                         <input type="date" name="paid_at" id="paid_at" class="form-control"
-                               value="{{ old('paid_at', $invoice->paid_at) }}">
+                            value="{{ old('paid_at') ?? $invoice->paid_at }}">
                     </div>
 
-                    <button type="submit" class="btn btn-warning">
+                    <button type="submit" class="btn btn-success">
                         <i class="bi bi-save"></i> Update
                     </button>
                     <a href="{{ route('invoices.index') }}" class="btn btn-secondary">
@@ -80,4 +80,28 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const amountInput = document.getElementById('amount');
+            const formatter = new Intl.NumberFormat('id-ID', {
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 2
+            });
+
+            const parseNumber = value => parseFloat((value || '').toString().replace(/\./g, '').replace(/,/g,
+                '.')) || 0;
+            const formatCurrency = input => {
+                input.value = parseNumber(input.value) ? formatter.format(parseNumber(input.value)) : '';
+            };
+
+            amountInput.addEventListener('blur', () => formatCurrency(amountInput));
+            amountInput.addEventListener('input', () => formatCurrency(amountInput));
+            document.querySelector('form').addEventListener('submit', () => {
+                amountInput.value = parseNumber(amountInput.value);
+            });
+
+            formatCurrency(amountInput);
+        });
+    </script>
 @endsection

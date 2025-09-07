@@ -21,6 +21,9 @@ class InvoiceController extends Controller
 
             return DataTables::of($data)
                 ->addIndexColumn()
+                ->editColumn('amount', function ($row) {
+                    return number_format($row->amount, 0, ',', '.');
+                })
                 ->addColumn('user', fn($row) => $row->user->name ?? '-')
                 ->addColumn('product', fn($row) => $row->product->name ?? '-')
                 ->addColumn('status', fn($row) => $row->is_paid ? '<span class="badge bg-success">Paid</span>' : '<span class="badge bg-warning">Unpaid</span>')

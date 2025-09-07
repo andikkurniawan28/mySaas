@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container-fluid py-0 px-0">
-    <h1 class="h3 mb-3"><strong>Profit & Loss</strong></h1>
+    <h1 class="h3 mb-3"><strong>Daftar Profit & Loss</strong></h1>
 
     <div class="d-flex justify-content-between align-items-center mb-3">
         <a href="{{ route('profitlosses.create') }}" class="btn btn-primary">

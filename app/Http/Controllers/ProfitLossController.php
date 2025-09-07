@@ -16,7 +16,15 @@ class ProfitLossController extends Controller
 
             return DataTables::of($query)
                 ->addColumn('user', fn($row) => $row->user->name ?? '-')
-
+                ->editColumn('revenue', function ($row) {
+                    return number_format($row->revenue, 0, ',', '.');
+                })
+                ->editColumn('expense', function ($row) {
+                    return number_format($row->expense, 0, ',', '.');
+                })
+                ->editColumn('profitloss', function ($row) {
+                    return number_format($row->profitloss, 0, ',', '.');
+                })
                 ->addColumn('action', function ($row) {
                     $buttons = '<div class="btn-group" role="group">';
                     if (Auth()->user()->role->akses_edit_profitloss) {

@@ -20,6 +20,15 @@
                 Data-set
             </li>
 
+            @if (Auth()->user()->role->akses_table_generator)
+                <li class="sidebar-item @yield('table_generator-active')">
+                    <a class="sidebar-link" href="{{ route('table_generator.index') }}">
+                        <i class="bi bi-table align-middle"></i>
+                        <span class="align-middle">Table Generator</span>
+                    </a>
+                </li>
+            @endif
+
             @if (Auth()->user()->role->akses_daftar_profitloss)
                 <li class="sidebar-item @yield('profitlosses-active')">
                     <a class="sidebar-link" href="{{ route('profitlosses.index') }}">

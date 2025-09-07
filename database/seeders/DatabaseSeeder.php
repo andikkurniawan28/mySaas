@@ -30,22 +30,40 @@ class DatabaseSeeder extends Seeder
                 'whatsapp' => '6285733465399',
             ],
             [
-                'name' => 'Admin',
+                'name' => 'Rizky Pratama',
                 'email' => 'admin@example.com',
                 'password' => bcrypt('admin123'),
-                'role_id' => '2',
+                'role_id' => 2, // Admin
                 'is_active' => 1,
                 'organization' => 'PT Optima Teknologi Industri',
                 'whatsapp' => '628123456789',
             ],
             [
-                'name' => 'Tenant',
-                'email' => 'tenant@example.com',
+                'name' => 'Siti Nurhaliza',
+                'email' => 'siti@example.com',
                 'password' => bcrypt('tenant123'),
-                'role_id' => '3',
+                'role_id' => 3, // Tenant
                 'is_active' => 1,
                 'organization' => 'CV Demo Sejahtera',
                 'whatsapp' => '628987654321',
+            ],
+            [
+                'name' => 'Budi Santoso',
+                'email' => 'budi@example.com',
+                'password' => bcrypt('tenant456'),
+                'role_id' => 3,
+                'is_active' => 1,
+                'organization' => 'CV Sejahtera Jaya',
+                'whatsapp' => '6281122334455',
+            ],
+            [
+                'name' => 'Dewi Lestari',
+                'email' => 'dewi@example.com',
+                'password' => bcrypt('tenant789'),
+                'role_id' => 3,
+                'is_active' => 1,
+                'organization' => 'CV Maju Bersama',
+                'whatsapp' => '6289988776655',
             ],
         ]);
 
@@ -99,7 +117,7 @@ class DatabaseSeeder extends Seeder
             $profitloss = $revenue - $expense;
 
             $data[] = [
-                'user_id'    => 3,
+                'user_id'    => rand(3,5),
                 'date'       => $date->format('Y-m-d'),
                 'revenue'    => $revenue,
                 'expense'    => $expense,

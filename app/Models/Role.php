@@ -38,6 +38,7 @@ class Role extends Model
             ['id' => 'akses_tambah_profitloss', 'name' => ucwords(str_replace('_', ' ', 'akses_tambah_profitloss'))],
             ['id' => 'akses_edit_profitloss', 'name' => ucwords(str_replace('_', ' ', 'akses_edit_profitloss'))],
             ['id' => 'akses_hapus_profitloss', 'name' => ucwords(str_replace('_', ' ', 'akses_hapus_profitloss'))],
+            ['id' => 'akses_table_generator', 'name' => ucwords(str_replace('_', ' ', 'akses_table_generator'))],
         ];
     }
 }
