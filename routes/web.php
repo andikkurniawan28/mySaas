@@ -4,9 +4,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\TicketController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProfitLossController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +31,5 @@ Route::resource('roles', RoleController::class)->middleware(['auth']);
 Route::resource('users', UserController::class)->middleware(['auth']);
 Route::resource('products', ProductController::class)->middleware(['auth']);
 Route::resource('invoices', InvoiceController::class)->middleware(['auth']);
+Route::resource('tickets', TicketController::class)->middleware(['auth']);
+Route::resource('profitlosses', ProfitLossController::class)->middleware(['auth']);

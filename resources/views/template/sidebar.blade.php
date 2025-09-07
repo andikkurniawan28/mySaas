@@ -4,7 +4,7 @@
 
         <a class="sidebar-brand" href="{{ route('dashboard.index') }}">
             <img src="/adminkit-main/static/img/icons/logo.png" />
-            <span class="align-middle">{{ ENV("APP_NAME") }}</span>
+            <span class="align-middle">{{ ENV('APP_NAME') }}</span>
         </a>
 
         <ul class="sidebar-nav">
@@ -16,14 +16,19 @@
                 </a>
             </li>
 
-            {{-- @if (Auth()->user()->role->akses_edit_setting)
-                <li class="sidebar-item @yield('settings-active')">
-                    <a class="sidebar-link" href="{{ route('settings.edit', 1) }}">
-                        <i class="bi bi-gear-fill align-middle"></i>
-                        <span class="align-middle">Setting</span>
+            <li class="sidebar-header">
+                Data-set
+            </li>
+
+            @if (Auth()->user()->role->akses_daftar_profitloss)
+                <li class="sidebar-item @yield('profitlosses-active')">
+                    <a class="sidebar-link" href="{{ route('profitlosses.index') }}">
+                        <i class="bi bi-bar-chart-line-fill align-middle"></i>
+                        <span class="align-middle">Profit & Loss</span>
                     </a>
                 </li>
-            @endif --}}
+            @endif
+
 
             <li class="sidebar-header">
                 Transaksi
@@ -34,6 +39,15 @@
                     <a class="sidebar-link" href="{{ route('invoices.index') }}">
                         <i class="bi bi-receipt align-middle"></i>
                         <span class="align-middle">Invoice</span>
+                    </a>
+                </li>
+            @endif
+
+            @if (Auth()->user()->role->akses_daftar_ticket)
+                <li class="sidebar-item @yield('tickets-active')">
+                    <a class="sidebar-link" href="{{ route('tickets.index') }}">
+                        <i class="bi bi-ticket-detailed align-middle"></i>
+                        <span class="align-middle">Ticket</span>
                     </a>
                 </li>
             @endif

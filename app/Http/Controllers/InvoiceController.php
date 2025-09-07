@@ -21,16 +21,16 @@ class InvoiceController extends Controller
 
             return DataTables::of($data)
                 ->addIndexColumn()
-                ->addColumn('user', fn($row) => $row->user?->name ?? '-')
-                ->addColumn('product', fn($row) => $row->product?->name ?? '-')
+                ->addColumn('user', fn($row) => $row->user->name ?? '-')
+                ->addColumn('product', fn($row) => $row->product->name ?? '-')
                 ->addColumn('status', fn($row) => $row->is_paid ? '<span class="badge bg-success">Paid</span>' : '<span class="badge bg-warning">Unpaid</span>')
                 ->addColumn('action', function ($row) {
                     $buttons = '<div class="btn-group" role="group">';
-                    if (auth()->user()->role->akses_edit_invoice) {
+                    if (Auth()->user()->role->akses_edit_invoice) {
                         $editUrl = route('invoices.edit', $row->id);
                         $buttons .= '<a href="' . $editUrl . '" class="btn btn-sm btn-warning">Edit</a>';
                     }
-                    if (auth()->user()->role->akses_hapus_invoice) {
+                    if (Auth()->user()->role->akses_hapus_invoice) {
                         $deleteUrl = route('invoices.destroy', $row->id);
                         $buttons .= '
                             <form action="' . $deleteUrl . '" method="POST" onsubmit="return confirm(\'Hapus data ini?\')" style="display:inline-block;">

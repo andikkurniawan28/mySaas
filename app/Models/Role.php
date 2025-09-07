@@ -30,6 +30,14 @@ class Role extends Model
             ['id' => 'akses_tambah_invoice', 'name' => ucwords(str_replace('_', ' ', 'akses_tambah_invoice'))],
             ['id' => 'akses_edit_invoice', 'name' => ucwords(str_replace('_', ' ', 'akses_edit_invoice'))],
             ['id' => 'akses_hapus_invoice', 'name' => ucwords(str_replace('_', ' ', 'akses_hapus_invoice'))],
+            ['id' => 'akses_daftar_ticket', 'name' => ucwords(str_replace('_', ' ', 'akses_daftar_ticket'))],
+            ['id' => 'akses_tambah_ticket', 'name' => ucwords(str_replace('_', ' ', 'akses_tambah_ticket'))],
+            ['id' => 'akses_edit_ticket', 'name' => ucwords(str_replace('_', ' ', 'akses_edit_ticket'))],
+            ['id' => 'akses_hapus_ticket', 'name' => ucwords(str_replace('_', ' ', 'akses_hapus_ticket'))],
+            ['id' => 'akses_daftar_profitloss', 'name' => ucwords(str_replace('_', ' ', 'akses_daftar_profitloss'))],
+            ['id' => 'akses_tambah_profitloss', 'name' => ucwords(str_replace('_', ' ', 'akses_tambah_profitloss'))],
+            ['id' => 'akses_edit_profitloss', 'name' => ucwords(str_replace('_', ' ', 'akses_edit_profitloss'))],
+            ['id' => 'akses_hapus_profitloss', 'name' => ucwords(str_replace('_', ' ', 'akses_hapus_profitloss'))],
         ];
     }
 }
