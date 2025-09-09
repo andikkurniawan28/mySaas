@@ -14,7 +14,7 @@
 
 	<link rel="canonical" href="https://demo-basic.adminkit.io/pages-sign-in.html" />
 
-	<title>MyERP</title>
+	<title>MySaaS - Admin</title>
 
 	<link href="/adminkit-main/static/css/app.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
@@ -28,7 +28,7 @@
 					<div class="d-table-cell align-middle">
 
 						<div class="text-center mt-4">
-							<h1 class="h2">{{ ENV("APP_NAME") }}</h1>
+							<h1 class="h2">MySaaS - Admin</h1>
 							<p class="lead">
 								Sign in to your account to continue
 							</p>

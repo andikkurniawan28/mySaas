@@ -4,7 +4,7 @@
 
         <a class="sidebar-brand" href="{{ route('dashboard.index') }}">
             <img src="/adminkit-main/static/img/icons/logo.png" />
-            <span class="align-middle">{{ ENV('APP_NAME') }}</span>
+            <span class="align-middle">MySaaS - Admin</span>
         </a>
 
         <ul class="sidebar-nav">
