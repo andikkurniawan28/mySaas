@@ -122,7 +122,19 @@ class UserController extends Controller
             $data['password'] = bcrypt($request->password);
         }
 
+        // Update user utama
         $user->update($data);
+
+        // Handle akses produk
+        $aksesProduk = User::akses_produk();
+        $updateAkses = [];
+        foreach ($aksesProduk as $akses) {
+            $col = $akses['id']; // contoh: access_to_product_1
+            $updateAkses[$col] = isset($request->akses_produk[$col]) ? 1 : 0;
+        }
+
+        // Simpan ke database
+        $user->update($updateAkses);
 
         return redirect()->route('users.index')->with('success', 'User berhasil diperbarui.');
     }

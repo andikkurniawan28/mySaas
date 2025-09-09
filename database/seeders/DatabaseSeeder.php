@@ -9,6 +9,8 @@ use App\Models\Product;
 use App\Models\ProfitLoss;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
 
 class DatabaseSeeder extends Seeder
 {
@@ -24,7 +26,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Andik Kurniawan',
                 'email' => 'andikkurniawan789456@gmail.com',
                 'password' => bcrypt('qc_789456'),
-                'role_id' => '1',
+                'role_id' => 1,
                 'is_active' => 1,
                 'organization' => 'PT Optima Teknologi Industri',
                 'whatsapp' => '6285733465399',
@@ -33,7 +35,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Rizky Pratama',
                 'email' => 'admin@example.com',
                 'password' => bcrypt('admin123'),
-                'role_id' => 2, // Admin
+                'role_id' => 2,
                 'is_active' => 1,
                 'organization' => 'PT Optima Teknologi Industri',
                 'whatsapp' => '628123456789',
@@ -42,7 +44,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Siti Nurhaliza',
                 'email' => 'siti@example.com',
                 'password' => bcrypt('tenant123'),
-                'role_id' => 3, // Tenant
+                'role_id' => 3,
                 'is_active' => 1,
                 'organization' => 'CV Demo Sejahtera',
                 'whatsapp' => '628987654321',
@@ -67,25 +69,7 @@ class DatabaseSeeder extends Seeder
             ],
         ]);
 
-        Product::insert([
-            [
-                'name' => 'Profit & Loss Dashboard',
-                'description' => 'Visualize your company’s financial performance with clear insights into revenue, expenses, and overall profitability.'
-            ],
-            [
-                'name' => 'Multi-Outlet Sales Dashboard',
-                'description' => 'Track and compare sales performance across multiple outlets to identify top-performing locations and optimize strategies.'
-            ],
-            [
-                'name' => 'Regional Sales Dashboard',
-                'description' => 'Analyze sales distribution by region to understand market trends, customer demand, and regional growth opportunities.'
-            ],
-            [
-                'name' => 'Accounts Payable & Receivable Dashboard',
-                'description' => 'Monitor payables and receivables in real-time to manage cash flow efficiently and keep financial records accurate.'
-            ],
-        ]);
-
+        $this->dummyProduct();
         $this->dummyProfitLoss();
     }
 
@@ -95,6 +79,7 @@ class DatabaseSeeder extends Seeder
             ['name' => 'Director'],
             ['name' => 'Admin'],
             ['name' => 'Tenant'],
+            ['name' => 'Prospect'],
         ]);
         $akses = Role::semua_akses();
         $updateData = [];
@@ -128,5 +113,37 @@ class DatabaseSeeder extends Seeder
         }
 
         ProfitLoss::insert($data);
+    }
+
+    public static function dummyProduct()
+    {
+        Product::insert([
+            [
+                'name' => 'Profit & Loss Dashboard',
+                'description' => 'Visualize your company’s financial performance with clear insights into revenue, expenses, and overall profitability.'
+            ],
+            [
+                'name' => 'Multi-Outlet Sales Dashboard',
+                'description' => 'Track and compare sales performance across multiple outlets to identify top-performing locations and optimize strategies.'
+            ],
+            [
+                'name' => 'Regional Sales Dashboard',
+                'description' => 'Analyze sales distribution by region to understand market trends, customer demand, and regional growth opportunities.'
+            ],
+            [
+                'name' => 'Accounts Payable & Receivable Dashboard',
+                'description' => 'Monitor payables and receivables in real-time to manage cash flow efficiently and keep financial records accurate.'
+            ],
+        ]);
+
+        foreach(Product::all() as $product)
+        {
+            $columnName = "access_to_product_{$product->id}";
+            if (!Schema::hasColumn('users', $columnName)) {
+                Schema::table('users', function (Blueprint $table) use ($columnName) {
+                    $table->boolean($columnName)->default(false);
+                });
+            }
+        }
     }
 }

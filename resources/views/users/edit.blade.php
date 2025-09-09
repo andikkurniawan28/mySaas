@@ -67,10 +67,47 @@
                         </select>
                     </div>
 
+                    @if($user->role_id == 3)
+                    <div class="mb-3">
+                        <label class="form-label">Akses Produk</label>
+
+                        {{-- Check All --}}
+                        <div class="form-check mb-2">
+                            <input type="checkbox" class="form-check-input" id="checkAllProduk">
+                            <label class="form-check-label fw-bold" for="checkAllProduk">Pilih Semua</label>
+                        </div>
+
+                        <div class="row">
+                            @foreach ($user->akses_produk() as $akses)
+                                <div class="col-md-4">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input akses-produk-checkbox"
+                                            id="{{ $akses['id'] }}" name="akses_produk[{{ $akses['id'] }}]"
+                                            value="1"
+                                            {{ old('akses_produk.' . $akses['id'], $user->{$akses['id']}) ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="{{ $akses['id'] }}">
+                                            {{ $akses['name'] }}
+                                        </label>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                    @endif
+
                     <button type="submit" class="btn btn-success">Update</button>
                     <a href="{{ route('users.index') }}" class="btn btn-secondary">Batal</a>
                 </form>
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+    <script>
+        document.getElementById('checkAllProduk').addEventListener('change', function() {
+            const checkboxes = document.querySelectorAll('.akses-produk-checkbox');
+            checkboxes.forEach(cb => cb.checked = this.checked);
+        });
+    </script>
 @endsection
