@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use App\Models\Role;
+use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 
@@ -79,12 +80,15 @@ class UserController extends Controller
             // 'is_active'    => 'required|boolean',
         ]);
 
+        $app_key = Str::random(8);
+
         User::create([
             'role_id'   => $request->role_id,
             'name'      => $request->name,
             'email'  => $request->email,
             'password'  => bcrypt($request->password),
             // 'is_active' => $request->is_active ?? 1,
+            'app_key'   => $app_key,
         ]);
 
         return redirect()->route('users.index')->with('success', 'User berhasil ditambahkan.');

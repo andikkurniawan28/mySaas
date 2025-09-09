@@ -25,6 +25,7 @@
                             <th>Email</th>
                             <th>Role</th>
                             <th>Status</th>
+                            <th>App_key</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -49,6 +50,7 @@
                 { data: 'email', name: 'email' },
                 { data: 'role', name: 'role.name' },
                 { data: 'status', name: 'is_active', orderable: false, searchable: false },
+                { data: 'app_key', name: 'app_key' },
                 { data: 'action', name: 'action', orderable: false, searchable: false }
             ]
         });

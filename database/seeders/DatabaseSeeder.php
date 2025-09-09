@@ -7,6 +7,7 @@ use App\Models\Role;
 use App\Models\User;
 use App\Models\Product;
 use App\Models\ProfitLoss;
+use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Schema;
@@ -30,6 +31,7 @@ class DatabaseSeeder extends Seeder
                 'is_active' => 1,
                 'organization' => 'PT Optima Teknologi Industri',
                 'whatsapp' => '6285733465399',
+                'app_key' => Str::random(8),
             ],
             [
                 'name' => 'Rizky Pratama',
@@ -39,6 +41,7 @@ class DatabaseSeeder extends Seeder
                 'is_active' => 1,
                 'organization' => 'PT Optima Teknologi Industri',
                 'whatsapp' => '628123456789',
+                'app_key' => Str::random(8),
             ],
             [
                 'name' => 'Siti Nurhaliza',
@@ -48,6 +51,7 @@ class DatabaseSeeder extends Seeder
                 'is_active' => 1,
                 'organization' => 'CV Demo Sejahtera',
                 'whatsapp' => '628987654321',
+                'app_key' => Str::random(8),
             ],
             [
                 'name' => 'Budi Santoso',
@@ -57,6 +61,7 @@ class DatabaseSeeder extends Seeder
                 'is_active' => 1,
                 'organization' => 'CV Sejahtera Jaya',
                 'whatsapp' => '6281122334455',
+                'app_key' => Str::random(8),
             ],
             [
                 'name' => 'Dewi Lestari',
@@ -66,6 +71,7 @@ class DatabaseSeeder extends Seeder
                 'is_active' => 1,
                 'organization' => 'CV Maju Bersama',
                 'whatsapp' => '6289988776655',
+                'app_key' => Str::random(8),
             ],
         ]);
 

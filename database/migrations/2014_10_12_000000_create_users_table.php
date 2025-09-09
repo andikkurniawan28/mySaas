@@ -22,6 +22,7 @@ return new class extends Migration
             $table->rememberToken();
             $table->string('organization');
             $table->string('whatsapp');
+            $table->string('app_key')->unique();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
