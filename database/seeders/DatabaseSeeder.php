@@ -108,7 +108,7 @@ class DatabaseSeeder extends Seeder
             $profitloss = $revenue - $expense;
 
             $data[] = [
-                'user_id'    => rand(3,5),
+                'user_id'    => rand(3, 5),
                 'date'       => $date->format('Y-m-d'),
                 'revenue'    => $revenue,
                 'expense'    => $expense,
@@ -125,25 +125,24 @@ class DatabaseSeeder extends Seeder
     {
         Product::insert([
             [
-                'name' => 'Profit & Loss Dashboard',
-                'description' => 'Visualize your company’s financial performance with clear insights into revenue, expenses, and overall profitability.'
+                'name' => 'Dashboard Laba',
+                'description' => 'Visualisasikan kinerja keuangan perusahaan Anda dengan wawasan yang jelas tentang pendapatan, biaya, dan profitabilitas secara keseluruhan.'
             ],
             [
-                'name' => 'Multi-Outlet Sales Dashboard',
-                'description' => 'Track and compare sales performance across multiple outlets to identify top-performing locations and optimize strategies.'
+                'name' => 'Dashboard Penjualan Multi-Outlet',
+                'description' => 'Pantau dan bandingkan kinerja penjualan di berbagai outlet untuk mengidentifikasi lokasi dengan performa terbaik dan mengoptimalkan strategi.'
             ],
             [
-                'name' => 'Regional Sales Dashboard',
-                'description' => 'Analyze sales distribution by region to understand market trends, customer demand, and regional growth opportunities.'
+                'name' => 'Dashboard Penjualan Regional',
+                'description' => 'Analisis distribusi penjualan berdasarkan wilayah untuk memahami tren pasar, permintaan pelanggan, dan peluang pertumbuhan regional.'
             ],
             [
-                'name' => 'Accounts Payable & Receivable Dashboard',
-                'description' => 'Monitor payables and receivables in real-time to manage cash flow efficiently and keep financial records accurate.'
+                'name' => 'Dashboard Hutang & Piutang',
+                'description' => 'Pantau hutang dan piutang secara real-time untuk mengelola arus kas secara efisien dan menjaga catatan keuangan tetap akurat.'
             ],
         ]);
 
-        foreach(Product::all() as $product)
-        {
+        foreach (Product::all() as $product) {
             $columnName = "access_to_product_{$product->id}";
             if (!Schema::hasColumn('users', $columnName)) {
                 Schema::table('users', function (Blueprint $table) use ($columnName) {
