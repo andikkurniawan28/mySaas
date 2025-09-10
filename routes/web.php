@@ -28,6 +28,7 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/changePassword', [AuthController::class, 'changePassword'])->name('changePassword');
 Route::post('/changePassword', [AuthController::class, 'changePasswordProcess'])->name('changePasswordProcess');
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index')->middleware(['auth']);
+Route::get('/dashboard/data', [DashboardController::class, 'data'])->name('dashboard.data');
 Route::resource('roles', RoleController::class)->middleware(['auth']);
 Route::resource('users', UserController::class)->middleware(['auth']);
 Route::resource('products', ProductController::class)->middleware(['auth']);
