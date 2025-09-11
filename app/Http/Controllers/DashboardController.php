@@ -28,7 +28,9 @@ class DashboardController extends Controller
         $tenantBaruBulanIni = User::whereMonth('created_at', now()->month)
             ->whereYear('created_at', now()->year)
             ->where('role_id', 3)
+            ->whereNotIn('id', [3, 4, 5, 8]) // exclude dummy id
             ->count();
+
 
         // === Prospect baru bulan ini ===
         $prospectBaruBulanIni = User::where('role_id', 4)
